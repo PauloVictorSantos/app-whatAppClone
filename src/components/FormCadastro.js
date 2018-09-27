@@ -56,5 +56,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { modificaEmail, modificaSenha, modificaNome })
+    { modificaEmail, modificaSenha, modificaNome, cadastraUsuario })
     (formCadastro);
