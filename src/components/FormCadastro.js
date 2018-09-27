@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput, Button } from 'react-native';
-import { modificaEmail, modificaSenha } from '../Actions/AutenticacaoActions';
 import { connect } from 'react-redux';
+import { modificaEmail, modificaSenha } from '../Actions/AutenticacaoActions';
 
 const formCadastro = props => {
     console.log(props);
@@ -13,7 +13,7 @@ const formCadastro = props => {
                 <TextInput value={props.email}
                     onChangeText={texto => props.modificaEmail(texto)}
                     placeholder="E-mail" style={{ fontSize: 20, height: 45 }} />
-                <TextInput value={props.senhas}
+                <TextInput value={props.senha}
                     onChangeText={texto => props.modificaSenha(texto)}
                     placeholder="Senha" style={{ fontSize: 20, height: 45 }} />
             </View>
@@ -25,9 +25,8 @@ const formCadastro = props => {
 }
 
 const mapStateToProps = state => ({
-    nome: state.AutenticacaoReducer.nome,
-    email: state.AutenticacaoReducer.email,
-    senha: state.AutenticacaoReducer.senha
+    email: state.AutenticacaoReducers.email,
+    senha: state.AutenticacaoReducers.senha
 });
 
 export default connect(mapStateToProps, {modificaEmail, modificaSenha})(formCadastro);

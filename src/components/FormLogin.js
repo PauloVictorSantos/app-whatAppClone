@@ -28,8 +28,8 @@ const formLogin = props => {
 }
 
 const mapStateToProps = state => ({
-    email: state.AutenticaoReducers.email,
-    senha: state.AutenticaoReducers.senha
+    email: state.AutenticacaoReducers.email,
+    senha: state.AutenticacaoReducers.senha
 });
 
 export default connect(mapStateToProps, { modificaEmail, modificaSenha })(formLogin);
