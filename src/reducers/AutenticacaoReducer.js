@@ -1,7 +1,8 @@
 const INICIAL_STATE = {
     nome: '',
     email: '',
-    senha: ''
+    senha: '',
+    erroCadastro: ''
 }
 
 export default (state = INICIAL_STATE, action) => {
@@ -25,5 +26,11 @@ export default (state = INICIAL_STATE, action) => {
             ...state, nome: action.payload
         }
     }
+    if (action.type == 'cadastro_usuario_erro') {
+        return {
+            ...state, erroCadastro: action.payload
+        }
+    }
+
     return state;
 }
