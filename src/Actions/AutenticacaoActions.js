@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+
 export const modificaEmail = (texto) => {
     console.log(texto);
     return {
@@ -20,9 +22,24 @@ export const modificaNome = (texto) => {
     }
 }
 
-export const cadastraUsuario =({nome, email, senha})=>{
-    alert(nome);
-    return{
-        type: 'teste'
+export const cadastraUsuario = ({ nome, email, senha }) => {
+    return dispatch => {
+        firebase.auth().createUserWithEmailAndPassword(email, senha)
+            .then(user => cadastroUsuarioSucesso(dispatch))
+            .catch(erro => cadastroUsuarioErro(erro, dispatch));
     }
+}
+
+const cadastroUsuarioSucesso = (dispatch) => {
+    dispatch(
+        {
+            type: 'sucesso'
+        }
+    );
+}
+
+const cadastroUsuarioErro = (erro, dispatch) => {
+    dispatch({
+        type: 'erro'
+    });
 }

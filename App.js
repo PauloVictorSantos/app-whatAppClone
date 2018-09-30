@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
 import Rotas from './src/Rotas';
 import reducers from './src/reducers/index';
 
 import firebase from 'firebase';
+import ReduxThunk from 'redux-thunk';
 
 export default class App extends Component {
   componentWillMount() {
@@ -22,7 +23,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <Provider store={createStore(reducers)}>
+      <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
         <Rotas />
       </Provider>
     );
