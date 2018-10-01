@@ -32,5 +32,11 @@ export default (state = INICIAL_STATE, action) => {
         }
     }
 
+    if (action.type == 'cadastro_usuario_sucesso') {
+        return {
+            ...state, nome: '', senha: ''
+        }
+    }
+
     return state;
 }

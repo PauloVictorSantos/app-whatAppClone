@@ -6,10 +6,10 @@ import BoasVindas from './components/BoasVindas';
 
 export default props => (
     <Router>
-        <Scene key="root">
-            <Scene key="boasVindas" component={BoasVindas} title="Bem Vindo" initial />
+        <Scene key="root" >
+            <Scene key="boasVindas" component={BoasVindas} initial title="Bem Vindo"  />
             <Scene key="formLogin" component={FormLogin} title="Login" />
-            <Scene key="formCadastro" component={FormCadastro} title="Cadastro" />
+            <Scene key="formCadastro" component={FormCadastro}  title="Cadastro" />
         </Scene>
     </Router>
 ); 
