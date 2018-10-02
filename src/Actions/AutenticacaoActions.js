@@ -67,10 +67,11 @@ const loginUsuarioSucesso = (dispatch) => {
     dispatch({
         type: 'login_usuario_sucesso'
     })
+    Actions.principal();
 }
 
 const loginUsuarioErro = (erro, dispatch) => {
     dispatch({
-        type: 'login_usuario_erro'
+        type: 'login_usuario_erro', payload: erro.message
     })
 }

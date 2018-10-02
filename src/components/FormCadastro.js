@@ -8,7 +8,7 @@ import {
     cadastraUsuario
 } from '../Actions/AutenticacaoActions';
 
-class formCadastro extends Component {
+export class formCadastro extends Component {
 
     _cadastraUsuario() {
         const { nome, email, senha } = this.props;
@@ -21,18 +21,15 @@ class formCadastro extends Component {
                 <View style={{ flex: 1, padding: 10 }}>
                     <View style={{ flex: 4, justifyContent: 'center' }}>
                         <TextInput
-                            value={this.props.nome}
-                            onChangeText={texto => this.props.modificaNome(texto)}
+                            value={this.props.nome} onChangeText={texto => this.props.modificaNome(texto)}
                             placeholder="Nome"
                             style={{ fontSize: 20, height: 45 }} />
                         <TextInput
-                            value={this.props.email}
-                            onChangeText={texto => this.props.modificaEmail(texto)}
+                            value={this.props.email}   onChangeText={texto => this.props.modificaEmail(texto)}
                             placeholder="E-mail"
                             style={{ fontSize: 20, height: 45 }} />
                         <TextInput
-                            value={this.props.senha}
-                            onChangeText={texto => this.props.modificaSenha(texto)}
+                            value={this.props.senha}   onChangeText={texto => this.props.modificaSenha(texto)}
                             placeholder="Senha"
                             secureTextEntry
                             style={{ fontSize: 20, height: 45 }} 

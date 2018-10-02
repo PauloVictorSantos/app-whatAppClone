@@ -6,7 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { modificaEmail, modificaSenha, autenticarUsuario } from '../Actions/AutenticacaoActions';
 
-export default class formLogin extends Component {
+export  class formLogin extends Component {
 
     _autenticarUsuario() {
         const { email, senha } = this.props;
@@ -24,18 +24,16 @@ export default class formLogin extends Component {
                     </View>
                     <View style={{ flex: 2 }}>
                         <TextInput
-                            value={this.props.email}
-                            onChangeText={texto => this.props.modificaEmail(texto)}
+                            value={this.props.email}  onChangeText={texto => this.props.modificaEmail(texto)}
                             style={{ fontSize: 20, height: 45 }}
                             placeholder="E-mail"
                             placeholderTextColor="#fff" />
-                        <TextInput
-                            secureTextEntry
-                            value={this.props.senha}
-                            onChangeText={texto => this.props.modificaSenha(texto)}
+                        <TextInput secureTextEntry
+                            value={this.props.senha}  onChangeText={texto => this.props.modificaSenha(texto)}
                             style={{ fontSize: 20, height: 45 }}
                             placeholder="Senha"
                             placeholderTextColor="#fff" />
+                        <Text style={{color:'#ff0000', fontSize: 18}}>{this.props.erroLogin}</Text>
                         <TouchableHighlight onPress={() => Actions.formCadastro()}>
                             <Text style={{ fontSize: 20, color: '#fff' }}>Ainda não tem cadastro? Cadastre-se</Text>
                         </TouchableHighlight>
@@ -54,7 +52,8 @@ export default class formLogin extends Component {
 
 const mapStateToProps = state => ({
     email: state.AutenticacaoReducers.email,
-    senha: state.AutenticacaoReducers.senha
+    senha: state.AutenticacaoReducers.senha,
+    erroLogin: state.AutenticacaoReducers.erroLogin
 });
 
 export default connect(mapStateToProps, { modificaEmail, modificaSenha, autenticarUsuario })(formLogin);
