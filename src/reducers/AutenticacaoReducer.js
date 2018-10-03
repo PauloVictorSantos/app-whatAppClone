@@ -8,7 +8,7 @@ import {
     LOGIN_USUARIO_ERRO,
 
 } from './types';
-import { LOGIN_EM_ANDAMENTO } from '../Actions/types';
+import { LOGIN_EM_ANDAMENTO, CADASTRO_EM_ANDAMENTO } from '../Actions/types';
 
 
 const INICIAL_STATE = {
@@ -17,7 +17,8 @@ const INICIAL_STATE = {
     senha: '',
     erroCadastro: '',
     erroLogin: '',
-    loading_login: false
+    loading_login: false,
+    loading_cadastro: false
 }
 
 export default (state = INICIAL_STATE, action) => {
@@ -42,12 +43,12 @@ export default (state = INICIAL_STATE, action) => {
 
         case CADASTRO_USUARIO_ERRO:
             return {
-                ...state, erroCadastro: action.payload
+                ...state, erroCadastro: action.payload, loading_cadastro:false
             }
 
         case CADASTRO_USUARIO_SUCESSO:
             return {
-                ...state, nome: '', senha: ''
+                ...state, nome: '', senha: '', loading_cadastro: false
             }
 
         case LOGIN_USUARIO_ERRO:
@@ -57,6 +58,10 @@ export default (state = INICIAL_STATE, action) => {
         case LOGIN_EM_ANDAMENTO:
             return {
                 ...state, loading_login: true
+            }
+        case CADASTRO_EM_ANDAMENTO:
+            return {
+                ...state, loading_cadastro: true
             }
 
         default:

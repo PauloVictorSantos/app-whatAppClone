@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, ImageBackground,Text } from 'react-native';
+import { View, TextInput, Button, ImageBackground, Text, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import {
     modificaEmail,
     modificaSenha,
     modificaNome,
-    cadastraUsuario
+    cadastraUsuario,
 } from '../Actions/AutenticacaoActions';
 
 export class formCadastro extends Component {
@@ -13,6 +13,20 @@ export class formCadastro extends Component {
     _cadastraUsuario() {
         const { nome, email, senha } = this.props;
         this.props.cadastraUsuario({ nome, email, senha });
+    }
+
+    renderBtnCadastro() {
+        if (this.props.loading_cadastro) {
+            return (
+                <ActivityIndicator size="large" />
+            )
+        }
+
+        return (
+            <Button title="Cadastrar"
+                color="#115E54"
+                onPress={() => this._cadastraUsuario()} />
+        );
     }
 
     render() {
@@ -25,23 +39,21 @@ export class formCadastro extends Component {
                             placeholder="Nome"
                             style={{ fontSize: 20, height: 45 }} />
                         <TextInput
-                            value={this.props.email}   onChangeText={texto => this.props.modificaEmail(texto)}
+                            value={this.props.email} onChangeText={texto => this.props.modificaEmail(texto)}
                             placeholder="E-mail"
                             style={{ fontSize: 20, height: 45 }} />
                         <TextInput
-                            value={this.props.senha}   onChangeText={texto => this.props.modificaSenha(texto)}
+                            value={this.props.senha} onChangeText={texto => this.props.modificaSenha(texto)}
                             placeholder="Senha"
                             secureTextEntry
-                            style={{ fontSize: 20, height: 45 }} 
-                            />
-                            <Text
-                                style={{color: '#ff0000', fontSize:18}}
-                            >{this.props.erroCadastro}</Text>
+                            style={{ fontSize: 20, height: 45 }}
+                        />
+                        <Text
+                            style={{ color: '#ff0000', fontSize: 18 }}
+                        >{this.props.erroCadastro}</Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Button title="Cadastrar"
-                            color="#115E54"
-                            onPress={() => this._cadastraUsuario()} />
+                        {this.AutenticacaoReducers()}
                     </View>
                 </View>
             </ImageBackground>
@@ -53,7 +65,8 @@ const mapStateToProps = state => ({
     nome: state.AutenticacaoReducers.nome,
     email: state.AutenticacaoReducers.email,
     senha: state.AutenticacaoReducers.senha,
-    erroCadastro: state.AutenticacaoReducers.erroCadastro
+    erroCadastro: state.AutenticacaoReducers.erroCadastro,
+    loading_cadastro: state.AutenticacaoReducers.loading_cadastro
 });
 
 export default connect(
