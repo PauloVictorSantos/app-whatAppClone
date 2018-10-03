@@ -6,9 +6,8 @@ import {
     CADASTRO_USUARIO_ERRO,
     LOGIN_USUARIO_SUCESSO,
     LOGIN_USUARIO_ERRO,
-
-} from './types';
-import { LOGIN_EM_ANDAMENTO, CADASTRO_EM_ANDAMENTO } from '../Actions/types';
+    LOGIN_EM_ANDAMENTO, CADASTRO_EM_ANDAMENTO
+} from '../Actions/types'
 
 
 const INICIAL_STATE = {

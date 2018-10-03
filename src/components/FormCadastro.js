@@ -53,7 +53,7 @@ export class formCadastro extends Component {
                         >{this.props.erroCadastro}</Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                        {this.AutenticacaoReducers()}
+                        {this.renderBtnCadastro()}
                     </View>
                 </View>
             </ImageBackground>
