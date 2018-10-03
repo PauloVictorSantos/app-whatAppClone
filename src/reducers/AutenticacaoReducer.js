@@ -8,6 +8,7 @@ import {
     LOGIN_USUARIO_ERRO,
 
 } from './types';
+import { LOGIN_EM_ANDAMENTO } from '../Actions/types';
 
 
 const INICIAL_STATE = {
@@ -51,7 +52,11 @@ export default (state = INICIAL_STATE, action) => {
 
         case LOGIN_USUARIO_ERRO:
             return {
-                ...state, erroLogin: action.payload
+                ...state, erroLogin: action.payload, loading_login: false
+            }
+        case LOGIN_EM_ANDAMENTO:
+            return {
+                ...state, loading_login: true
             }
 
         default:
