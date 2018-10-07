@@ -1,15 +1,10 @@
 import * as React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import {StyleSheet, Dimensions } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
+
 import TabBarMenu from './TabBarMenu';
-
-const Conversas = () => (
-  <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
-);
-
-const Contatos = () => (
-  <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
-);
+import Conversas from './Conversas';
+import Contatos from './Contatos';
 
 export default class Principal extends React.Component {
   state = {
