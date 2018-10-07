@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
-import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import { TabView, SceneMap } from 'react-native-tab-view';
+import TabBarMenu from './TabBarMenu';
 
-
-const FirstRoute = () => (
+const Conversas = () => (
   <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
 );
 
-const SecondRoute = () => (
+const Contatos = () => (
   <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
 );
 
@@ -15,18 +15,18 @@ export default class Principal extends React.Component {
   state = {
     index: 0,
     routes: [
-      { key: 'first', title: 'First' },
-      { key: 'second', title: 'Second' },
+      { key: 'first', title: 'Conversas' },
+      { key: 'second', title: 'Contatos' },
     ],
   };
 
   _handleIndexChange = index => this.setState({ index });
 
-  _renderTabBar = props => <TabBar {...props} style={styles.header} />;
+  _renderTabBar = props => <TabBarMenu {...props} />
 
   _renderScene = SceneMap({
-    first: FirstRoute,
-    second: SecondRoute,
+    first: Conversas,
+    second: Contatos,
   });
 
   render() {
@@ -48,5 +48,5 @@ const styles = StyleSheet.create({
   scene: {
     flex: 1,
   },
- 
+
 });

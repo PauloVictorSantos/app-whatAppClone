@@ -5,6 +5,6 @@ import {TabBar} from 'react-native-tab-view';
 export default props=(
     <View>
         <Text>WhatApp Clone</Text>
-        <TabBar></TabBar>
+        <TabBar {...props}/>
     </View>
 );
