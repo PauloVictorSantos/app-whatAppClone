@@ -1,10 +1,15 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {TabBar} from 'react-native-tab-view';
+import { View, Text, StatusBar } from 'react-native';
+import { TabBar } from 'react-native-tab-view';
 
-export default props=>(
-    <View>
-        <Text>WhatApp Clone</Text>
-        <TabBar {...props}/>
+export default props => (
+    <View style={{ backgroundColor: '#115E54', elevation= 4, marginBottom: 6 }}>
+        <StatusBar
+            backgroundColor="#114D44"
+        />
+        <View style={{ height: 50, justifyContent: 'center' }}>
+            <Text style={{ color: '#fff', marginLeft: 20, fontSize: 20 }}>WhatApp Clone</Text>
+        </View>
+        <TabBar {...props} style={{backgroundColor="#115E54", elevation= 0}}/>
     </View>
 );
