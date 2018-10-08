@@ -33,6 +33,7 @@ export default class Principal extends React.Component {
         onIndexChange={this._handleIndexChange}
         initialLayout={{
           width: Dimensions.get('window').width,
+          height: Dimensions.get('window').height
         }}
       />
     );

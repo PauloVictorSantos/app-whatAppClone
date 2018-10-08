@@ -21,9 +21,6 @@ const INICIAL_STATE = {
 }
 
 export default (state = INICIAL_STATE, action) => {
-
-    console.log(action);
-
     switch (action.type) {
         case MODIFICA_EMAIL:
             return {
