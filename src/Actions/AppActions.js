@@ -27,7 +27,7 @@ export const adicionaContato = email => {
                     const { currentUser } = firebase.auth();
                     let emailUsuario = b64.encode(currentUser.email);
                     
-                    firebase.database.ref(`/usuario_contatos/${emailUsuario}`).push({mail,  nome: 'nome do contato'})
+                    firebase.database().ref(`/usuario_contatos/${emailUsuario}`).push({email,  nome: 'nome do contato'})
                     .then(()=>console.log("Sucesso"))
                     .catch(erro=>console.log(erro))
 
