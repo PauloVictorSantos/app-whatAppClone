@@ -19,6 +19,8 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state, cadastro_resultado_txt_erro: action.payload
             }
+
+            
         default:
             return state;
     }
