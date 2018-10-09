@@ -35,7 +35,7 @@ export const adicionaContato = email => {
 
                     firebase.database().ref(`/usuario_contatos/${emailUsuario}`)
                         .push({ email, nome: dadosUsuario.nome })
-                        .then(() => console.log("Sucesso"))
+                        .then(() =>adicionaContatoSucesso(dispatch))
                         .catch(erro => adicionaContatoErro(erro.message, dispatch))
 
                 } else {
@@ -54,5 +54,11 @@ const adicionaContatoErro = (erro, dispatch)(
     dispatch({
         type: ADICIONA_CONTATO_ERRO,
         payload: erro
+    })
+)
+
+const adicionaContatoSucesso=(dispatch)(
+    dispatch({
+        type: ADICIONA_CONTATO_SUCESSO
     })
 )
