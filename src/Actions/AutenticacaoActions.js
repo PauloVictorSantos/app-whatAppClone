@@ -10,8 +10,7 @@ import {
     LOGIN_USUARIO_SUCESSO,
     LOGIN_USUARIO_ERRO,
     LOGIN_EM_ANDAMENTO,
-    CADASTRO_EM_ANDAMENTO,
-
+    CADASTRO_EM_ANDAMENTO
 } from './types';
 
 export const modificaEmail = (texto) => {
