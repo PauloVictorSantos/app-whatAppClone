@@ -24,7 +24,9 @@ export default (state = INITIAL_STATE, action) => {
             }
         case ADICIONA_CONTATO_SUCESSO:
             return {
-                ...state, cadastro_resultado_inclusao: true
+                ...state, 
+                cadastro_resultado_inclusao: action.payload,
+                adiciona_contato_email: ''
             }
         default:
             return state;

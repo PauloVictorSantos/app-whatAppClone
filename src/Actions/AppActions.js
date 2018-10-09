@@ -60,6 +60,12 @@ const adicionaContatoErro = (erro, dispatch)=>(
 
 const adicionaContatoSucesso = (dispatch)=>(
     dispatch({
-        type: ADICIONA_CONTATO_SUCESSO
+        type: ADICIONA_CONTATO_SUCESSO,
+        payload: true
     })
 )
+
+export const habilitaInclusaoContato =()=>({
+    type: ADICIONA_CONTATO_SUCESSO,
+    payload: false
+})
