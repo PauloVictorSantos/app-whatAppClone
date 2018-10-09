@@ -14,7 +14,7 @@ export default props => (
             <Scene key="formLogin" hideNavBar={true} component={FormLogin} title="Login" />
             <Scene key="formCadastro" hideNavBar={false} component={FormCadastro} title="Cadastro" />
             <Scene key="principal" hideNavBar={true} component={Principal} title="Principal" />
-            <Scene key="adicionarContatos" hideNavBar={false} component={AdicionarContatos} title="adicionar Contatos" />
+            <Scene key="adicionarContatos" hideNavBar={false} component={AdicionarContatos} title="Adicionar Contato" />
         </Scene>
     </Router>
 ); 
