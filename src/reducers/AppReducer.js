@@ -16,7 +16,7 @@ export default (state = INITIAL_STATE, action) => {
         case MODIFICA_ADICIONA_CONTATO_EMAIL:
             return {
                 ...state,
-                adiciona_contato_email: action.payload
+                adiciona_contato_email: action.payload, cadastro_resultado_inclusao: false
             }
         case ADICIONA_CONTATO_ERRO:
             return {
