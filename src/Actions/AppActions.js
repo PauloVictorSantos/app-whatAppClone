@@ -76,7 +76,7 @@ export const contatosUsuarioFetch = () => {
     const { currentUser } = firebase.auth();
 
     return (dispatch) => {
-        let emailUsuarioB64 = b64.encode9(currentUser.email);
+        let emailUsuarioB64 = b64.encode(currentUser.email);
 
         firebase.database().ref(`/usuario_contatos/${emailUsuarioB64}`)
             .on('value', snapshot => {
