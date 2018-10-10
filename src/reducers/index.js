@@ -4,5 +4,6 @@ import AppReducer from './AppReducer';
 
 export default combineReducers({
     AutenticacaoReducers,
-    AppReducer
+    AppReducer,
+    ListaContatosReducers
 });
