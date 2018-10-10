@@ -21,7 +21,7 @@ class Contatos extends Component {
             rowHasChanged: (r1, r2) => r1 !== r2
         })
 
-        this.fontedeDados = ds.cloneWithRows([contatos]);
+        this.fontedeDados = ds.cloneWithRows(contatos);
 
     }
 
@@ -31,10 +31,11 @@ class Contatos extends Component {
                 enableEmptySections
                 dataSource={this.fontedeDados}
                 renderRow={data => (
-                    <View>
-                        <Text>{data.nome}</Text>
-                        <Text>{data.email}</Text>
-                    </View>)
+                    <View style={{flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#ccc' }}>
+                        <Text style={{fontSize: 25}}>{data.nome}</Text>
+                        <Text style={{fontSize: 18}}>{data.email}</Text>
+                    </View>
+                )
                 }
             />
         );
