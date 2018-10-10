@@ -52,35 +52,36 @@ export const adicionaContato = email => {
     }
 }
 
-const adicionaContatoErro = (erro, dispatch)=>(
+const adicionaContatoErro = (erro, dispatch) => (
     dispatch({
         type: ADICIONA_CONTATO_ERRO,
         payload: erro
     })
 )
 
-const adicionaContatoSucesso = (dispatch)=>(
+const adicionaContatoSucesso = (dispatch) => (
     dispatch({
         type: ADICIONA_CONTATO_SUCESSO,
         payload: true
     })
 )
 
-export const habilitaInclusaoContato =()=>({
+export const habilitaInclusaoContato = () => ({
     type: ADICIONA_CONTATO_SUCESSO,
     payload: false
 })
 
-export const contatosUsuarioFetch = ()=>{
+export const contatosUsuarioFetch = () => {
 
-    const {currentUser} = firebase.auth();
+    const { currentUser } = firebase.auth();
 
-    return(dispatch)=>{
+    return (dispatch) => {
         let emailUsuarioB64 = b64.encode9(currentUser.email);
 
         firebase.database().ref(`/usuario_contatos/${emailUsuarioB64}`)
-        .on('value',snapshot=>{
-            dispatch({type: LISTA_CONTATO_USUARIO, payload: snapshot.val()})
-        })
+            .on('value', snapshot => {
+                console.log(snapshot.val());
+                dispatch({ type: LISTA_CONTATO_USUARIO, payload: snapshot.val() })
+            })
     }
 }

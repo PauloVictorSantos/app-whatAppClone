@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-    console.log(action);
+
     switch (action.type) {
         case MODIFICA_ADICIONA_CONTATO_EMAIL:
             return {
@@ -24,7 +24,7 @@ export default (state = INITIAL_STATE, action) => {
             }
         case ADICIONA_CONTATO_SUCESSO:
             return {
-                ...state, 
+                ...state,
                 cadastro_resultado_inclusao: action.payload,
                 adiciona_contato_email: ''
             }
