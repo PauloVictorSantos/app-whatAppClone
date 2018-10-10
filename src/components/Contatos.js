@@ -7,39 +7,35 @@ import _ from 'lodash';
 
 class Contatos extends Component {
 
-    constructor(props) {
-        super(props);
+    componentWillMount() {
+        this.props.contatosUsuarioFetch();
+        this.criaFonteDedados(this.props.contatos);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.criaFonteDedados(nextProps.contatos);
+    }
+
+    criaFonteDedados(contatos) {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
         })
 
-        this.state = {
-            fontedeDados: ds.cloneWithRows([
-                'Registro 1',
-                'Registro 2',
-                'Registro 3',
-                'Registro 4'
-            ])
-        }
-    }
-
-    componentWillMount() {
-        this.props.contatosUsuarioFetch();
+        this.fontedeDados = ds.cloneWithRows([contatos]);
 
     }
-
-    componentWillReceiveProps(nextProps){
-        
-    }
-
 
     render() {
         return (
             <ListView
-                dataSource={this.state.fontedeDados}
-                renderRow={data=><View>
-                    <Text>{data}</Text>
-                </View>}
+                enableEmptySections
+                dataSource={this.fontedeDados}
+                renderRow={data => (
+                    <View>
+                        <Text>{data.nome}</Text>
+                        <Text>{data.email}</Text>
+                    </View>)
+                }
             />
         );
     }
