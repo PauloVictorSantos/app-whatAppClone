@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View, TextInput, TouchableHighlight } from 'react-native';
+import { connect } from 'react-redux';
+import {modificaMensagem} from '../Actions/AppActions';
 
 export default class Conversa extends Component {
     render() {
@@ -8,6 +10,8 @@ export default class Conversa extends Component {
                 <View style={{ flex: 1, paddingBottom: 20 }}></View>
                 <View style={{ flexDirection: 'row', height: 60 }}>
                     <TextInput
+                        value={this.props.mensagem}
+                        onChangeText={texto =>this.props.modificaMensagem(texto)}
                         style={{ flex: 4, backgroundColor: '#fff', fontSize: 18 }}
                     />
                 </View>
@@ -19,3 +23,11 @@ export default class Conversa extends Component {
 
     }
 }
+
+mapStateToProps = state => {
+    return ({
+        mensagem: state.AppReducer.mensagem
+    })
+}
+
+export default connect(mapStateToProps, {modificaMensagem})(Conversa);
