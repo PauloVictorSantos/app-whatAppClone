@@ -92,3 +92,11 @@ export const modificaMensagem = texto => {
         payload: texto
     })
 }
+
+
+export const enviaMensagem = (mensagem) => {
+    console.log(mensagem);
+    return ({
+        type: ''
+    })
+}
