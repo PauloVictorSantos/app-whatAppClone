@@ -3,7 +3,7 @@ import {StyleSheet, Dimensions } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 
 import TabBarMenu from './TabBarMenu';
-import Conversa from './Conversa';
+import Conversas from './Conversas';
 import Contatos from './Contatos';
 
 export default class Principal extends React.Component {
@@ -20,7 +20,7 @@ export default class Principal extends React.Component {
   _renderTabBar = props => <TabBarMenu {...props} />
 
   _renderScene = SceneMap({
-    first: Conversa,
+    first: Conversas,
     second: Contatos,
   });
 

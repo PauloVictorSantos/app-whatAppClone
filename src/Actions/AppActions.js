@@ -95,10 +95,22 @@ export const modificaMensagem = texto => {
 
 
 export const enviarMensagem = (mensagem, contatoNome, contatoEmail) => {
-    console.log(mensagem);
-    console.log(contatoNome);
-    console.log(contatoEmail);
-    return ({
-        type: 'xyz'
-    })
+
+    const { currentUser } = firebase.auth();
+    const usuarioEmail = currentUser.email;
+
+    return dispatch => {
+
+        const usuarioEmailB64 = b64.encode(usuarioEmail);
+        const contatoEmailB64 = b64.encode(contatoEmail);
+
+        firebase.database().ref(`/mensagens/${usuarioEmailB64}/${contatoEmailB64}`)
+            .push({ mensagem, tipo: 'e' })
+            .then(() => {
+                firebase.database().ref(`/mensagens/${contatoEmailB64}/${usuarioEmailB64}`)
+                    .push({ mensagem, tipo: 'r' })
+                    .then(() => dispatch({ type: 'xyz' }))
+            })
+
+    }
 }
