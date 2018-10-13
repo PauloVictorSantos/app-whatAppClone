@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { View, TextInput, TouchableHighlight, Im } from 'react-native';
+import { View, TextInput, TouchableHighlight, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { modificaMensagem, enviaMensagem } from '../Actions/AppActions';
+import { modificaMensagem, enviarMensagem } from '../Actions/AppActions';
 
 export class Conversa extends Component {
+
+    _enviarMensagem(){
+        const {mensagem, contatoNome, contatoEmail}  =  this.props;
+        this.props.enviarMensagem(mensagem, contatoNome, contatoEmail);
+    }
+
     render() {
         return (
             <View style={{ flex: 1, marginTop: 50, backgroundColor: '#eee4dc', padding: 10 }}>
@@ -15,7 +21,7 @@ export class Conversa extends Component {
                         style={{ flex: 4, backgroundColor: '#fff', fontSize: 18 }}
                     />
 
-                    <TouchableHighlight onPress={() => this.props.enviaMensagem(this.props.mensagemF)} underlayColor='#fff'>
+                    <TouchableHighlight onPress={this._enviarMensagem.bind(this)} underlayColor='#fff'>
                         <Image source={require('../imgs/enviar_mensagem.png')} />
                     </TouchableHighlight>
                 </View>
@@ -31,4 +37,4 @@ mapStateToProps = state => {
     })
 }
 
-export default connect(mapStateToProps, { modificaMensagem, enviaMensagem })(Conversa);
+export default connect(mapStateToProps, { modificaMensagem, enviarMensagem })(Conversa);

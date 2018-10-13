@@ -94,9 +94,11 @@ export const modificaMensagem = texto => {
 }
 
 
-export const enviaMensagem = (mensagem) => {
+export const enviarMensagem = (mensagem, contatoNome, contatoEmail) => {
     console.log(mensagem);
+    console.log(contatoNome);
+    console.log(contatoEmail);
     return ({
-        type: ''
+        type: 'xyz'
     })
 }
