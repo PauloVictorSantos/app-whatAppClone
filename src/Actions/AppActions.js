@@ -95,7 +95,7 @@ export const modificaMensagem = texto => {
 
 
 export const enviarMensagem = (mensagem, contatoNome, contatoEmail) => {
-
+    console.log("Contato nome", contatoNome);
     const { currentUser } = firebase.auth();
     const usuarioEmail = currentUser.email;
 
@@ -113,11 +113,12 @@ export const enviarMensagem = (mensagem, contatoNome, contatoEmail) => {
             })
             .then(() => {//armazenar o cabeçalho de conversa do usuario autenticado
                 firebase.database().ref(`/usuario_conversas/${usuarioEmailB64}/${contatoEmailB64}`)
-                    .set({ nome: contatoNome, email: contatoEmail });
+                    .set({ nome: contatoNome, email: contatoEmail })
             })
             .then(() => {//armazenar o cabeçalho de conversa do contato
 
-                firebase.database().ref(`/contatos/${usuarioEmailB64}`).once('value').then(snapshot => {
+                firebase.database().ref(`/contatos/${usuarioEmailB64}`).once('value')
+                .then(snapshot => {
                     
                     const dadosUsuario = _.first(_.values(snapshot.val()));
 
