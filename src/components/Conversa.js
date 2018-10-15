@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, TouchableHighlight, Image, ListView } from 'react-native';
+import { View, TextInput, TouchableHighlight, Image, ListView, Text } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { modificaMensagem, enviarMensagem, conversaUsuarioFetch } from '../Actions/AppActions';
@@ -17,7 +17,7 @@ export class Conversa extends Component {
     }
 
     criaFonteDeDados(conversa) {
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) !== r2 });
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.dataSource = ds.cloneWithRows(conversa);
     }
 
@@ -27,10 +27,16 @@ export class Conversa extends Component {
     }
 
     renderRow(texto) {
+        if (texto.tipo === 'e') {
+            return (
+                <View style={{ alignItems: "flex-end", marginTop: 5, marginBottom: 5, marginLeft: 40 }}>
+                    <Text style={{ fontSize: 18, color: '#000', padding: 10, backgroundColor: '#dbf5b4', elevation: 1, borderRadius: 10 }}>{texto.mensagem}</Text>
+                </View>
+            )
+        }
         return (
-            <View>
-                <Text>{texto.mensagem}</Text>
-                <Text>{texto.tipo}</Text>
+            <View style={{ alignItems: "flex-start", marginTop: 5, marginBottom: 5, marginRight: 40 }}>
+                <Text style={{ fontSize: 18, color: '#000', padding: 10, backgroundColor: '#f7f7f7', elevation: 1, borderRadius: 10 }}>{texto.mensagem}</Text>
             </View>
         )
     }
