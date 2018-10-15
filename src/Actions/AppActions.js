@@ -9,7 +9,8 @@ import {
     LISTA_CONTATO_USUARIO,
     MODIFICA_MENSAGEM,
     LISTA_CONVERSA_USUARIO,
-    ENVIA_MENSAGEM_SUCESSO
+    ENVIA_MENSAGEM_SUCESSO,
+    LISTA_CONVERSAS_USUARIO
 } from './types';
 
 export const modificaAdicionarContatoEmail = (texto) => {
@@ -155,15 +156,15 @@ export const conversasUsuarioFetch = () => {
 
     const { currentUser } = firebase.auth();
 
-    let usuarioEmailB64 = b64.encode(currentUser.nome);
-
     return dispatch => {
+        let usuarioEmailB64 = b64.encode(currentUser.email);
         firebase.database().ref(`/usuario_conversas/${usuarioEmailB64}`)
             .on('value', snapshot => {
                 dispatch({
                     type: LISTA_CONVERSAS_USUARIO,
                     payload: snapshot.val()
                 })
+              
             })
     }
 }
