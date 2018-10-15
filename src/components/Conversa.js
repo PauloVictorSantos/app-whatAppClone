@@ -46,7 +46,7 @@ export class Conversa extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, marginTop: 50, backgroundColor: '#eee4dc', padding: 10 }}>
+            <View style={{ flex: 1, backgroundColor: '#eee4dc', padding: 10 }}>
                 <View style={{ flex: 1, paddingBottom: 20 }}>
                     <ListView
                         enableEmptySections
