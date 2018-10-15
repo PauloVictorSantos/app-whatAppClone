@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, TouchableHighlight, Image } from 'react-native';
+import { View, TextInput, TouchableHighlight, Image, ListView } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { modificaMensagem, enviarMensagem, conversaUsuarioFetch } from '../Actions/AppActions';
@@ -8,6 +8,17 @@ export class Conversa extends Component {
 
     componentWillMount() {
         this.props.conversaUsuarioFetch(this.props.contatoEmail);
+        this.criaFonteDeDados(this.props.conversa);
+    }
+
+    //depois que a view é executada
+    componentWillReceiveProps(nextProps) {
+        this.criaFonteDeDados(nextProps.conversa);
+    }
+
+    criaFonteDeDados(conversa) {
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) !== r2 });
+        this.dataSource = ds.cloneWithRows(conversa);
     }
 
     _enviarMensagem() {
@@ -15,10 +26,26 @@ export class Conversa extends Component {
         this.props.enviarMensagem(mensagem, contatoNome, contatoEmail);
     }
 
+    renderRow(texto) {
+        return (
+            <View>
+                <Text>{texto.mensagem}</Text>
+                <Text>{texto.tipo}</Text>
+            </View>
+        )
+    }
+
     render() {
         return (
             <View style={{ flex: 1, marginTop: 50, backgroundColor: '#eee4dc', padding: 10 }}>
-                <View style={{ flex: 1, paddingBottom: 20 }}></View>
+                <View style={{ flex: 1, paddingBottom: 20 }}>
+                    <ListView
+                        enableEmptySections
+                        dataSource={this.dataSource}
+                        renderRow={this.renderRow}
+                    />
+
+                </View>
                 <View style={{ flexDirection: 'row', height: 60 }}>
                     <TextInput
                         value={this.props.mensagem}
@@ -38,11 +65,9 @@ export class Conversa extends Component {
 
 mapStateToProps = state => {
 
-    const conversa = _.map(state.ListaConversaReducer,(val, uid)=>{
-        return {...state, uid};
+    const conversa = _.map(state.ListaConversaReducer, (val, uid) => {
+        return { ...val, uid };
     });
-
-    console.log(conversa);
 
     return ({
         conversa,
