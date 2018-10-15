@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ListView } from 'react-native';
+import { View, Text, ListView, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { conversasUsuarioFetch } from '../Actions/AppActions';
 import _ from 'lodash';
@@ -22,8 +22,8 @@ export class Conversas extends Component {
 
     renderRow(conversa) {
         return (
-            <View>
-                <Text>{conversa.nome}</Text>
+            <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#ccc' }}>
+                <Text style={{fontSize:25}}>{conversa.nome}</Text>
             </View>
         );
     }
