@@ -7,8 +7,9 @@ import {
     ADICIONA_CONTATO_ERRO,
     ADICIONA_CONTATO_SUCESSO,
     LISTA_CONTATO_USUARIO,
-    MODIFICA_MENSAGEM, 
-    LISTA_CONVERSA_USUARIO
+    MODIFICA_MENSAGEM,
+    LISTA_CONVERSA_USUARIO,
+    ENVIA_MENSAGEM_SUCESSO
 } from './types';
 
 export const modificaAdicionarContatoEmail = (texto) => {
@@ -20,7 +21,6 @@ export const modificaAdicionarContatoEmail = (texto) => {
 
 
 export const adicionaContato = email => {
-    console.log(email);
     return dispatch => {
         let emailB64 = b64.encode(email);
 
@@ -110,7 +110,7 @@ export const enviarMensagem = (mensagem, contatoNome, contatoEmail) => {
             .then(() => {
                 firebase.database().ref(`/mensagens/${contatoEmailB64}/${usuarioEmailB64}`)
                     .push({ mensagem, tipo: 'r' })
-                    .then(() => dispatch({ type: 'xyz' }))
+                    .then(() => dispatch({ type: ENVIA_MENSAGEM_SUCESSO }))
             })
             .then(() => {//armazenar o cabeçalho de conversa do usuario autenticado
                 firebase.database().ref(`/usuario_conversas/${usuarioEmailB64}/${contatoEmailB64}`)
@@ -142,7 +142,28 @@ export const conversaUsuarioFetch = contatoEmail => {
     return dispatch => {
         firebase.database().ref(`/mensagens/${usuarioEmailB64}/${contatoEmailB64}`)
             .on('value', snapshot => {
-                dispatch({ type: LISTA_CONVERSA_USUARIO, payload: snapshot.val() })
+                dispatch({
+                    type: LISTA_CONVERSA_USUARIO,
+                    payload: snapshot.val()
+                })
+            })
+    }
+}
+
+
+export const conversasUsuarioFetch = () => {
+
+    const { currentUser } = firebase.auth();
+
+    let usuarioEmailB64 = b64.encode(currentUser.nome);
+
+    return dispatch => {
+        firebase.database().ref(`/usuario_conversas/${usuarioEmailB64}`)
+            .on('value', snapshot => {
+                dispatch({
+                    type: LISTA_CONVERSAS_USUARIO,
+                    payload: snapshot.val()
+                })
             })
     }
 }

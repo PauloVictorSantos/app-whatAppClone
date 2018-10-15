@@ -13,6 +13,9 @@ export class Conversa extends Component {
 
     //depois que a view é executada
     componentWillReceiveProps(nextProps) {
+        if (this.props.contatoEmail != nextProps.contatoEmail) {
+            this.props.conversaUsuarioFetch(nextProps.contatoEmail);
+        }
         this.criaFonteDeDados(nextProps.conversa);
     }
 
@@ -74,7 +77,7 @@ mapStateToProps = state => {
     const conversa = _.map(state.ListaConversaReducer, (val, uid) => {
         return { ...val, uid };
     });
-
+    console.log('conversa', conversa);
     return ({
         conversa,
         mensagem: state.AppReducer.mensagem
