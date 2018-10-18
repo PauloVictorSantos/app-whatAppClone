@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-import b64 from 'base-64';;
+import b64 from 'base-64';
 import {
     MODIFICA_EMAIL,
     MODIFICA_SENHA,
@@ -39,7 +39,7 @@ export const cadastraUsuario = ({ nome, email, senha }) => {
     return dispatch => {
 
         dispatch({ type: CADASTRO_EM_ANDAMENTO })
-        
+
         firebase.auth().createUserWithEmailAndPassword(email, senha)
             .then(user => {
                 let emailb64 = b64.encode(email);
@@ -92,4 +92,19 @@ const loginUsuarioErro = (erro, dispatch) => {
         type: LOGIN_USUARIO_ERRO,
         payload: erro.message
     })
+}
+
+export const verificaUsuarioLogado = () => {
+
+    return dispatch => {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                Actions.principal();
+            }else{
+                console.log(user);
+            }
+        })
+    }
+
+
 }
