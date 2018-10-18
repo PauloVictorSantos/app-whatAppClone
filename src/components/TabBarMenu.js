@@ -29,8 +29,8 @@ const TabBarMenu = props => (
                 </View>
                 <View style={{ justifyContent: 'center' }}>
                     <TouchableHighlight onPress={
-                        ()=>firebase.auth().signOut().then(
-                            ()=>Actions.formLogin()
+                        () => firebase.auth().signOut().then(
+                            () => Actions.formLogin()
                         )
                     }>
                         <Text style={{ fontSize: 20, color: '#fff' }}>Sair</Text>

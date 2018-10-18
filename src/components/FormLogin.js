@@ -12,7 +12,8 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { modificaEmail, modificaSenha, autenticarUsuario } from '../Actions/AutenticacaoActions';
 
-export class formLogin extends Component {
+
+export class FormLogin extends Component {
 
     _autenticarUsuario() {
         const { email, senha } = this.props;
@@ -20,9 +21,9 @@ export class formLogin extends Component {
     }
 
     renderBtnAcessar() {
-        if(this.props.loading_login){
-            return(
-                <ActivityIndicator size="large"/>
+        if (this.props.loading_login) {
+            return (
+                <ActivityIndicator size="large" />
             );
         }
         return (
@@ -74,4 +75,4 @@ const mapStateToProps = state => ({
     loading_login: state.AutenticacaoReducers.loading_login
 });
 
-export default connect(mapStateToProps, { modificaEmail, modificaSenha, autenticarUsuario })(formLogin);
+export default connect(mapStateToProps, { modificaEmail, modificaSenha, autenticarUsuario })(FormLogin);
